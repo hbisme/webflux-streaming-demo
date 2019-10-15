@@ -40,8 +40,16 @@ public class ExampleHandler {
                 .map(i -> {
                     String now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                     return new Pair(now, i);
+                })
+                .map(i -> {
+                    Object ii = (Long)i.getValue();
+                    return new Pair("a", ii);
                 });
         return flux;
+    }
+
+    public Flux<User> findBoy() {
+        return userRepository.findAll().filter(x -> x.getPhone().equals("3"));
     }
 
     public Flux<User> findAll() {

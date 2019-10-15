@@ -24,6 +24,17 @@ public class ReactiveController {
     @Autowired
     private ExampleHandler exampleHandler;
 
+    @GetMapping("/test0")
+    public Flux<String> test0() {
+
+        Flux<String> fewWords = Flux.just("Hello", "World");
+        return fewWords;
+
+
+
+    }
+
+
     // Example of returning a simple string to your browser
     @GetMapping("/test1")
     public Mono<String> test1() {
@@ -46,6 +57,11 @@ public class ReactiveController {
     @GetMapping(value = "/user/{gender}")
     public Flux<User> findByGender(@PathVariable("gender") String gender) {
         return exampleHandler.findByGender(gender);
+    }
+
+    @GetMapping(value = "/user/findboy")
+    public Flux<User> findBoy() {
+        return exampleHandler.findBoy();
     }
 
 }
